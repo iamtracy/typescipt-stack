@@ -11,6 +11,9 @@ const corsOptions = {
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS"
 };
 
+import * as MongoClient from 'mongodb';
+import * as mongoose from 'mongoose';
+
 class ExpressApp {
 
   public express: express.Application;
@@ -19,8 +22,13 @@ class ExpressApp {
     this.express = express();
     this.express.use(cors(corsOptions));
     this.middleware();
+
     this.routes();
     this.watch();
+  }
+
+  private connect() {
+    mongoose.connect('mongodb://localhost/my_database');
   }
 
   private watch() {
