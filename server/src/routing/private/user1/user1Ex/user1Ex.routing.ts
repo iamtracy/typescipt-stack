@@ -8,15 +8,15 @@ class User1Ex {
   }
   private setRoutes() {
     this.routes
-        .route('/')
+        .route('*')
         .get((req: Request, res: Response) => {
           res.json(`user1ex get ${req.body.password}`);
         })
         .post((req: Request, res: Response) => {
           res.json(`user1ex post ${req.body.password}`);
         })
-        .put((req: Request, res: Response) => {
-          res.json(`user1ex put ${req.body.password}`);
+        .patch((req: Request, res: Response) => {
+          res.json(`user1ex patch ${req.body.password}`);
         });
   }
 }

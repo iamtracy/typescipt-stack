@@ -15,8 +15,8 @@ class User2Ex {
         .post((req: Request, res: Response) => {
           res.json(`user2ex post ${req.body.password}`);
         })
-        .put((req: Request, res: Response) => {
-          res.json(`user2ex put ${req.body.password}`);
+        .patch((req: Request, res: Response) => {
+          res.json(`user2ex patch ${req.body.password}`);
         });
   }
 }

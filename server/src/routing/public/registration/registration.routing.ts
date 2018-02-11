@@ -22,9 +22,9 @@ class Registration {
           this.user = req.body;
           res.json(`Registration post ${req.body.password}`);
         })
-        .put((req: Request, res: Response) => {
+        .patch((req: Request, res: Response) => {
           this.user = req.body;
-          res.json(`Registration put ${req.body.password}`);
+          res.json(`Registration patch ${req.body.password}`);
         });
   }
 }
