@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
-const NodemonPlugin = require('nodemon-webpack-plugin')
+const NodemonPlugin = require('nodemon-webpack-plugin');
 
 module.exports = {
     entry: './src/server.ts',

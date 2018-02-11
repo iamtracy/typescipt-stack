@@ -5,8 +5,8 @@ import * as logger from 'morgan';
 import * as http from 'http';
 import * as bodyParser from 'body-parser';
 
-import DataBase from './db.config';
-import Http from './http.config';
+import DataBase from './config/db.config';
+import Http from './config/http.config';
 
 import PublicRoutes from './routing/public/public.routing';
 import PrivateRoutes from './routing/private/private.routing';
