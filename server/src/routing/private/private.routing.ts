@@ -9,7 +9,7 @@ import User1Routes from './user1/user1.routing';
 import User2Routes from './user2/user2.routing';
 
 PrivateRoutes.all('*', (req: Request, res: Response, next: NextFunction) => {
-    const user: { userTypeId: 1 | 2 } = { userTypeId: 2 };
+    const user: { userTypeId: 1 | 2 } = { userTypeId: 1 };
     next();
     switch(user.userTypeId) { 
         case 1: {

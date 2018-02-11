@@ -49,7 +49,7 @@ class ExpressApp {
     });
     this.express.use('/private', PrivateRoutes);
   }
- 
+
 }
 
 export default new ExpressApp(new DataBase()).express;
