@@ -1,8 +1,5 @@
-import { Router, Request, Response, NextFunction } from 'express';
-import * as mongoose from 'mongoose';
-
-const Schema = mongoose.Schema;
-const ObjectId = mongoose.SchemaTypes.ObjectId;
+import { Router, Request, Response } from 'express';
+import { Mongoose, Schema, SchemaTypes } from 'mongoose';
 
 class User1Ex {
   public routes: Router = Router();
