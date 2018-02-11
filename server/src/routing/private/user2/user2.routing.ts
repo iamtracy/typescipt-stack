@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const ObjectId = mongoose.SchemaTypes.ObjectId;
 const User2Routes: Router = Router();
 
-User2Routes.route('*')
+User2Routes.route('/')
   .get((req: Request, res: Response) => {
     res.json(`user2 get ${req.body.password}`);
   })

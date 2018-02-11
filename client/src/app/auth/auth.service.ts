@@ -22,7 +22,7 @@ export class AuthService {
   signIn(user: {email: string, passord: string}) {
     
     return this.http
-        .post(`${environment.api}/private/user1`, user)
+        .post(`${environment.api}/public/registration`, user)
         .map(data => data)
         .subscribe((response: Response) => console.log(response));
         

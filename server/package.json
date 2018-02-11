@@ -4,8 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "build": "webpack --config webpack.config.js --watch",
-        "start": "rm -rf ./dist && npm run build && nodemon ./dist/app.js"
+        "dev": "webpack --env.NODE_ENV=127.0.0.1 --env.production=false --config webpack.config.js -w",
+        "start": "rm -rf ./dist && npm run dev && nodemon ./dist/app.js"
     },
     "keywords": [],
     "author": "",

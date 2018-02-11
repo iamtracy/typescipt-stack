@@ -36,7 +36,7 @@ class ExpressApp {
   }
 
   private routes(): void {
-    this.express.post('/public', PublicRoutes);
+    this.express.use('/public', PublicRoutes);
     this.express.all('*', (req: Request, res: Response, next: NextFunction) => {
       const isAuth: boolean = true;
       if(isAuth) {
