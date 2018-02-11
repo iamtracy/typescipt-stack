@@ -4,15 +4,15 @@
     "description": "",
     "main": "index.js",
     "scripts": {
+        "start": "rm -rf ./dist && npm run dev",
         "dev": "webpack --env.NODE_ENV=127.0.0.1 --env.production=false --config webpack.config.js -w",
-        "start": "rm -rf ./dist && npm run dev && nodemon ./dist/app.js"
+        "prod": "webpack --env.NODE_ENV=0.0.0.0 --env.production=true --config webpack.config.js"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "dependencies": {
         "body-parser": "^1.18.2",
-        "chokidar": "^2.0.1",
         "cors": "^2.8.4",
         "express": "^4.16.2",
         "mongodb": "^3.0.2",
@@ -23,17 +23,14 @@
     },
     "devDependencies": {
         "@types/body-parser": "^1.16.8",
-        "@types/chokidar": "^1.7.4",
         "@types/debug": "0.0.30",
         "@types/express": "^4.11.1",
         "@types/mongodb": "^3.0.5",
         "@types/mongoose": "^5.0.1",
         "@types/morgan": "^1.7.35",
         "@types/node": "^9.4.4",
-        "nodemon": "^1.14.12",
         "nodemon-webpack-plugin": "^0.1.6",
         "webpack": "^3.11.0",
-        "webpack-dev-server": "^2.11.1",
         "webpack-node-externals": "^1.6.0"
     }
 }

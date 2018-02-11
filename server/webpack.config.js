@@ -24,8 +24,8 @@ module.exports = env => {
             new NodemonPlugin(),
             new webpack.DefinePlugin({
                 'process.env': {
-                    domain: JSON.stringify(env.NODE_ENV),
-                    production: JSON.stringify(env.production)
+                    domain: env.NODE_ENV,
+                    production: env.production
                 }
             })
         ],

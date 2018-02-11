@@ -1,19 +1,12 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import * as mongoose from 'mongoose';
 
-const Schema = mongoose.Schema;
-const ObjectId = mongoose.SchemaTypes.ObjectId;
+import User2Ex from './user2Ex/user2Ex.routing';
 const User2Routes: Router = Router();
 
-User2Routes.route('/')
-  .get((req: Request, res: Response) => {
-    res.json(`user2 get ${req.body.password}`);
-  })
-  .post((req: Request, res: Response) => {
-    res.json(`user2 post ${req.body.password}`);
-  })
-  .put((req: Request, res: Response) => {
-    res.json(`user2 put ${req.body.password}`);
-  });
+User2Routes.all('*', (req: Request, res: Response, next: NextFunction) => {
+    User2Routes.use('/user1ex', User2Ex);
+    next();
+});
 
 export default User2Routes;
