@@ -1,10 +1,14 @@
 import * as path from 'path';
 import * as express from 'express';
+import { Router, Request, Response, NextFunction } from 'express';
 import * as logger from 'morgan';
 import * as http from 'http';
 import * as bodyParser from 'body-parser';
-import * as APP_ROUTES from './public/auth/auth.routing';
 import { DataBase } from './db.access';
+
+import RegistrationRoutes from './routing/public/registration/registration.routing';
+import PublicRoutes from './routing/public/auth/auth.routing';
+import PrivateRoutes from './routing/private/private.routing';
 
 const cors = require('cors');
 const corsOptions = {
@@ -44,13 +48,16 @@ class ExpressApp {
   }
 
   private routes(): void {
-    this.express.all('/auth', (req, res, next) => {
+    this.express.post('/public', RegistrationRoutes);
+    this.express.all('*', (req: Request, res: Response, next: NextFunction) => {
       const isAuth: boolean = true;
-      isAuth 
-      ? next()
-      : res.status(401).send({ error: 'Not authorized' });
+      if(isAuth) {
+        next();
+      } else {
+        res.status(401).send({ error: 'Not authorized' })
+      }
     });
-    this.express.use('/auth', APP_ROUTES.RouteController);
+    this.express.use('/private', PrivateRoutes);
   }
  
 }
