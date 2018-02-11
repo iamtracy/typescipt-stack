@@ -5,7 +5,7 @@ import * as logger from 'morgan';
 import * as http from 'http';
 import * as bodyParser from 'body-parser';
 
-import { DataBase } from './db.config';
+import DataBase from './db.config';
 
 import PublicRoutes from './routing/public/authentication/authentication.routing';
 import PrivateRoutes from './routing/private/private.routing';
@@ -49,7 +49,7 @@ class ExpressApp {
       if(isAuth) {
         next();
       } else {
-        res.status(401).send({ error: 'Not authorized' })
+        res.status(401).send({ error: 'Not authorized' });
       }
     });
     this.express.use('/private', PrivateRoutes);
