@@ -1,12 +1,15 @@
-import * as express from 'express';
+import { Router, Request, Response, NextFunction } from 'express';
 import * as mongoose from 'mongoose';
-import { Router, Request, Response } from 'express';
+
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.SchemaTypes.ObjectId;
 const PublicRoutes: Router = Router();
 
-PublicRoutes.all('/', function (req, res, next) {
-    res.json(`${req.body.password}`)
+import RegistrationRoutes from './registration/registration.routing';
+
+PublicRoutes.all('/', (req: Request, res: Response, next: NextFunction) => {
+    PublicRoutes.post('registration', RegistrationRoutes);
+    next();
 });
 
 export default PublicRoutes;

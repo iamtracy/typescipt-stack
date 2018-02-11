@@ -1,13 +1,13 @@
+import { Router, Request, Response, NextFunction } from 'express';
 import * as path from 'path';
 import * as express from 'express';
-import { Router, Request, Response, NextFunction } from 'express';
 import * as logger from 'morgan';
 import * as http from 'http';
 import * as bodyParser from 'body-parser';
-import { DataBase } from './db.access';
 
-import RegistrationRoutes from './routing/public/registration/registration.routing';
-import PublicRoutes from './routing/public/auth/auth.routing';
+import { DataBase } from './db.config';
+
+import PublicRoutes from './routing/public/authentication/authentication.routing';
 import PrivateRoutes from './routing/private/private.routing';
 
 const cors = require('cors');
@@ -25,15 +25,10 @@ class ExpressApp {
   constructor(dataBase: DataBase) {
     this.express = express();
     this.express.use(cors(corsOptions));
-    this.dataBase = dataBase;
+    dataBase.connect();
     this.middleware();
     this.routes();
-    this.connect();
     this.watch();
-  }
-
-  private connect() {
-    this.dataBase.connect();
   }
 
   private watch() {
@@ -48,7 +43,7 @@ class ExpressApp {
   }
 
   private routes(): void {
-    this.express.post('/public', RegistrationRoutes);
+    this.express.post('/public', PublicRoutes);
     this.express.all('*', (req: Request, res: Response, next: NextFunction) => {
       const isAuth: boolean = true;
       if(isAuth) {

@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const ObjectId = mongoose.SchemaTypes.ObjectId;
 const RegistrationRoutes: Router = Router();
 
-RegistrationRoutes.all('/', function (req: Request, res: Response, next: NextFunction) {
+RegistrationRoutes.all('/', (req: Request, res: Response, next: NextFunction) => {
     res.json(`${req.body.password}`);
 });
 
