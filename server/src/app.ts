@@ -3,7 +3,9 @@ import * as express from 'express';
 import * as logger from 'morgan';
 import * as http from 'http';
 import * as bodyParser from 'body-parser';
-import authRoutes from './public/auth/auth.routing';
+import * as APP_ROUTES from './public/auth/auth.routing';
+import { DataBase } from './db.access';
+
 const cors = require('cors');
 const corsOptions = {
   preflightContinue: true,
@@ -11,24 +13,23 @@ const corsOptions = {
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS"
 };
 
-import * as MongoClient from 'mongodb';
-import * as mongoose from 'mongoose';
-
 class ExpressApp {
 
   public express: express.Application;
+  private dataBase: DataBase;
 
-  constructor() {
+  constructor(dataBase: DataBase) {
     this.express = express();
     this.express.use(cors(corsOptions));
+    this.dataBase = dataBase;
     this.middleware();
-
     this.routes();
+    this.connect();
     this.watch();
   }
 
   private connect() {
-    mongoose.connect('mongodb://localhost/my_database');
+    this.dataBase.connect();
   }
 
   private watch() {
@@ -43,12 +44,15 @@ class ExpressApp {
   }
 
   private routes(): void {
-    let router = express.Router();
-    this.express.use('/', router);
-    router.use('/auth', authRoutes);
+    this.express.all('/auth', (req, res, next) => {
+      const isAuth: boolean = true;
+      isAuth 
+      ? next()
+      : res.status(401).send({ error: 'Not authorized' });
+    });
+    this.express.use('/auth', APP_ROUTES.RouteController);
   }
-
  
 }
 
-export default new ExpressApp().express;
+export default new ExpressApp(new DataBase()).express;

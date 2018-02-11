@@ -1,8 +1,14 @@
 import * as express from 'express';
-let authRoutes = express.Router();
+import * as mongoose from 'mongoose';
+import { DataBase } from './../../db.access';
+import { Router, Request, Response } from 'express';
+const Schema = mongoose.Schema;
+const ObjectId = mongoose.SchemaTypes.ObjectId;
+const router: Router = Router();
 
-authRoutes.post('/', (req, res, next) => {
-    res.json(`${req.body.password}`);
+// In this case it's /auth
+router.post('/', function (req, res, next) {
+    res.json(`${req.body.password}`)
 });
 
-export default authRoutes;
+export const RouteController: Router = router;
