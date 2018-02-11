@@ -11,7 +11,6 @@ import Http from './config/http.config';
 import PublicRoutes from './routing/public/public.routing';
 import PrivateRoutes from './routing/private/private.routing';
 
-
 class ExpressApp {
 
   public express: express.Application;
