@@ -4,10 +4,10 @@ const nodeExternals = require('webpack-node-externals');
 const NodemonPlugin = require('nodemon-webpack-plugin')
 
 module.exports = {
-    entry: './src/app.ts',
+    entry: './src/server.ts',
     output: {
         path: path.join(__dirname, './dist'),
-        filename: 'app.js',
+        filename: 'server.js',
     },
     resolve: {
         extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js'],

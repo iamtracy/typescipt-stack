@@ -3,17 +3,18 @@ import * as mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.SchemaTypes.ObjectId;
-const RegistrationRoutes: Router = Router();
+const User2Routes: Router = Router();
 
-RegistrationRoutes.route('/')
+
+User2Routes.route('/')
   .get((req: Request, res: Response) => {
-    res.json(`get ${req.body.password}`);
+    res.json(`user2 get ${req.body.password}`);
   })
   .post((req: Request, res: Response) => {
-    res.json(`post ${req.body.password}`);
+    res.json(`user2 post ${req.body.password}`);
   })
   .put((req: Request, res: Response) => {
-    res.json(`put ${req.body.password}`);
+    res.json(`user2 put ${req.body.password}`);
   });
 
-export default RegistrationRoutes;
+export default User2Routes;

@@ -6,16 +6,11 @@ import * as http from 'http';
 import * as bodyParser from 'body-parser';
 
 import DataBase from './db.config';
+import Http from './http.config';
 
-import PublicRoutes from './routing/public/authentication/authentication.routing';
+import PublicRoutes from './routing/authentication.routing';
 import PrivateRoutes from './routing/private/private.routing';
 
-const cors = require('cors');
-const corsOptions = {
-  preflightContinue: true,
-  origin: 'http://localhost:4200',
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS"
-};
 
 class ExpressApp {
 
@@ -24,7 +19,7 @@ class ExpressApp {
 
   constructor(dataBase: DataBase) {
     this.express = express();
-    this.express.use(cors(corsOptions));
+    this.express.use(Http);
     dataBase.connect();
     this.middleware();
     this.routes();
