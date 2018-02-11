@@ -14,12 +14,11 @@ import PrivateRoutes from './routing/private/private.routing';
 class ExpressApp {
 
   public express: express.Application;
-  private dataBase: DataBase;
 
   constructor(dataBase: DataBase) {
+    dataBase.connect();
     this.express = express();
     this.express.use(Http);
-    dataBase.connect();
     this.middleware();
     this.routes();
     this.watch();

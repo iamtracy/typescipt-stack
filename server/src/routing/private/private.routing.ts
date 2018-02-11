@@ -10,7 +10,6 @@ import User2Routes from './user2/user2.routing';
 
 PrivateRoutes.all('*', (req: Request, res: Response, next: NextFunction) => {
     const user: { userTypeId: 1 | 2 } = { userTypeId: 1 };
-    next();
     switch(user.userTypeId) { 
         case 1: {
             PrivateRoutes.use('/user1', User1Routes);
@@ -24,7 +23,8 @@ PrivateRoutes.all('*', (req: Request, res: Response, next: NextFunction) => {
             res.status(401).send({ error: 'Unauthorized user type' });
             break; 
         }
-    } 
+    }
+    next();
 });
 
 export default PrivateRoutes;

@@ -8,8 +8,8 @@ const PublicRoutes: Router = Router();
 import RegistrationRoutes from './registration/registration.routing';
 
 PublicRoutes.all('*', (req: Request, res: Response, next: NextFunction) => {
-    next();
     PublicRoutes.all('registration', RegistrationRoutes);
+    next();
 });
 
 export default PublicRoutes;
