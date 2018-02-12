@@ -4,6 +4,7 @@ import * as express from 'express';
 import * as logger from 'morgan';
 import * as http from 'http';
 import * as bodyParser from 'body-parser';
+import * as jwt from 'express-jwt';
 
 import DataBase from './config/db.config';
 import Http from './config/http.config';
