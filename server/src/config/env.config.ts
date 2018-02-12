@@ -4,8 +4,11 @@
 // default. There are also other syntaxes that you can 
 // use. See the webpack CLI documentation for more information.
 
-const environment: { api: string, production: boolean} = {
+type EnvConfig = { api: string, databaseUrl: string, production: boolean};
+
+const environment: EnvConfig = {
   api: process.env.domain,
+  databaseUrl: `mongodb://${process.env.domain}:27017/localDb`,
   production: Boolean(process.env.production)
 };
 
