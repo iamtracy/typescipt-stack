@@ -22,9 +22,8 @@ export class AuthService {
   signIn(user: {email: string, passord: string}) {
     
     return this.http
-        .post(`${environment.api}/public/registration`, user)
-        .map(data => data)
-        .subscribe((response: Response) => console.log(response));
+        .get(`${environment.api}/private/user1/user1Ex`)
+        .map(data => data);
         
   }
 

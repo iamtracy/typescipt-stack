@@ -23,7 +23,11 @@ export class SigninComponent implements OnInit {
   }
 
   onSubmit() {
-    this.authService.signIn(this.signInForm.value);
+    
+    this.authService
+        .signIn(this.signInForm.value)
+        .subscribe((response: Array<any>) => console.log(response));
+
   }
 
 }

@@ -13,6 +13,9 @@ module.exports = env => {
         },
         resolve: {
             extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js'],
+            modules: [
+                path.resolve(__dirname, 'models')
+            ]
         },
         module: {
             loaders: [{

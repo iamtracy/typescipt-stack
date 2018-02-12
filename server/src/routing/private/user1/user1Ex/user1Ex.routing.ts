@@ -1,18 +1,19 @@
-import { Router, Request, Response } from 'express';
+import { Router, Request, Response, NextFunction } from 'express';
 import { Mongoose, Schema, SchemaTypes, Model } from 'mongoose';
+import * as mongoose from 'mongoose';
+
+import { getResponse } from './../../../../util/response'
 
 class User1Ex {
   public routes: Router = Router();
-  // private model: Model<any> = new Model();
-  // private schema: Schema = new Schema();
   constructor() {
     this.setRoutes();
   }
   private setRoutes() {
     this.routes
         .route('*')
-        .get((req: Request, res: Response) => {
-          res.json(`user1ex get ${req.body.password}`);
+        .get((req: Request, res: Response, next: NextFunction) => {
+          mongoose.model('Users').find({}, (err, data) => getResponse(err, res, data, next));
         })
         .post((req: Request, res: Response) => {
           res.json(`user1ex post ${req.body.password}`);

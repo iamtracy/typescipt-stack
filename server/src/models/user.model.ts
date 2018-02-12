@@ -5,7 +5,8 @@ const User = new Schema({
    name:String,
    email:String,
    password:String,
-   userRole: Number
+   userRole: Number,
+   _id: Number,
 });
 
 export default mongoose.model('Users', User); 
