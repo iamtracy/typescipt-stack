@@ -1,32 +1,41 @@
-import { User } from './../../../../../app.d';
 import { Router, Request, Response, NextFunction } from 'express';
-import * as mongoose from 'mongoose';
+import { Document, Schema, Model, model } from "mongoose";
+import * as mongoose from "mongoose";
 
-const Schema = mongoose.Schema;
-const ObjectId = mongoose.SchemaTypes.ObjectId;
-
+import User from './user.model';
+          
 class Registration {
   public routes: Router = Router();
-  private user: User;
   constructor() {
     this.setRoutes();
   }
   private setRoutes() {
     this.routes
-        .route('/')
-        .get((req: Request, res: Response) => {
-          this.user = req.body;
-          res.json(`Registration get ${req.body.password}`);
+        .route('*')
+        .get((req: Request, res: Response, next: NextFunction) => {
+            res.json(`Registration get ${req.body.password}`);
         })
-        .post((req: Request, res: Response) => {
-          this.user = req.body;
-          res.json(`Registration post ${req.body.password}`);
+        .post((req: Request, res: Response, next: NextFunction) => {
+
+            new User({
+              password : req.body.password,
+              email : req.body.email,
+              userRole: 2
+            })
+            .save((err, user) => {
+                if (err) {
+                  return next(err);
+                }
+              res.json(user);
+            });
+
         })
-        .patch((req: Request, res: Response) => {
-          this.user = req.body;
+        .patch((req: Request, res: Response, next: NextFunction) => {
           res.json(`Registration patch ${req.body.password}`);
         });
+
   }
+  
 }
 
 

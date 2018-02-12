@@ -22,7 +22,7 @@ export class AuthService {
   signIn(user: {email: string, passord: string}) {
     
     return this.http
-        .patch(`${environment.api}/private/user1/user1ex`, user)
+        .post(`${environment.api}/public/registration`, user)
         .map(data => data)
         .subscribe((response: Response) => console.log(response));
         

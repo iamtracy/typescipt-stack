@@ -1,8 +1,10 @@
 import { Router, Request, Response } from 'express';
-import { Mongoose, Schema, SchemaTypes } from 'mongoose';
+import { Mongoose, Schema, SchemaTypes, Model } from 'mongoose';
 
 class User1Ex {
   public routes: Router = Router();
+  // private model: Model<any> = new Model();
+  // private schema: Schema = new Schema();
   constructor() {
     this.setRoutes();
   }
